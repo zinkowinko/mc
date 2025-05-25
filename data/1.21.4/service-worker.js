@@ -13,6 +13,7 @@ if (!self.define) {
             .then(text => {
               const blob = new Blob([text], { type: 'application/javascript' });
               const url = URL.createObjectURL(blob);
+              s = url;
               importScripts(url);
               n();
             })
