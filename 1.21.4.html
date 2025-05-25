@@ -2,8 +2,23 @@
 <html>
 
 <head>
-    <base href="https://cdn.jsdelivr.net/gh/genizy/mc@main/data/1.21.4/">
+    <base href="https://cdn.jsdelivr.net/gh/genizy/mc@b86773493d99fade697d7a75f260383def0b692f/data/1.21.4/">
     <meta name="darkreader-lock">
+    <script>
+        const OriginalWorker = window.Worker;
+
+        window.Worker = function (script, options) {
+            if (typeof script === 'function' || typeof script === 'string') {
+
+                fetch("service-worker.js").then(res => res.text()).then(text => {
+                    const blob = new Blob([text], { type: 'application/javascript' });
+                    return new OriginalWorker(URL.createObjectURL(blob), options);
+                });
+            }
+            return new OriginalWorker(script, options);
+        };
+
+    </script>
     <script>
         window.startLoad = Date.now()
         // g663 fix: forbid change of string prototype
