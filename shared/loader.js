@@ -26,12 +26,15 @@
           configurable: true,
           enumerable: true,
           set(value) {
-                value.servers = [
-      { addr: "wss://mc.arch.lol", name: "bitsmc" },
-      { addr: "wss://beta.arch.lol", name: "Â§r Â§r Â§r Â§r Â§4Â§lArchMC Beta" }
-    ];
+            value.servers = [
+	      { addr: "wss://mc.clever.college", name: "§c§lGN-MATH.GITHUB.IO" },
+              { addr: "wss://complex.lat", name: "Complexity Network" },
+              { addr: "wss://mc.asspixel.net", name: "Asspixel" },
+              { addr: "wss://tuff.tf", name: "TuffNet" },
+              { addr: "wss://mc.arch.lol", name: "ArchMC" }
+            ];
 
-    this._eaglercraftXOpts = value;
+            this._eaglercraftXOpts = value;
           },
           get() {
             return this._eaglercraftXOpts;
