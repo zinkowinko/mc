@@ -22,6 +22,23 @@
 		return (cid, path) => { return "https://" + cid + ".ipfs." + domain + "/" + path; };
 	}
 
+	Object.defineProperty(window, 'eaglercraftXOpts', {
+          configurable: true,
+          enumerable: true,
+          set(value) {
+                value.servers = [
+      { addr: "wss://mc.arch.lol", name: "bitsmc" },
+      { addr: "wss://beta.arch.lol", name: "Â§r Â§r Â§r Â§r Â§4Â§lArchMC Beta" }
+    ];
+
+    this._eaglercraftXOpts = value;
+          },
+          get() {
+            return this._eaglercraftXOpts;
+          }
+        });
+
+
 	const IPFS_GATEWAYS = [
 		makePatternA("gateway.ipfs.io"),
 		makePatternB("4everland.io"),
