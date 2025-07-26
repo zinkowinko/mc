@@ -46,7 +46,6 @@
   { addr: "wss://play.cactusmc.org", name: "CactusMC" },
   { addr: "wss://wanderwood.thatonebot.site", name: "WanderwoodSMP" },
   { addr: "wss://play.alphrixnetwork.site", name: "AlphrixNetwork" },
-  { addr: "wss://play.monacoeducation.info", name: "DylanMC Lifesteal S1 + TNT Run + Bedwars" },
   { addr: "wss://bedwetr.bytommy.uk", name: "BedWetr [Speed bridging and stuf]" },
   { addr: "wss://30070.ddnod.es", name: "Skyblock" },
   { addr: "wss://eagler.galacticnet.cfd", name: "Radiant Network " },
@@ -78,7 +77,8 @@
   { addr: "wss://play.citri.xyz", name: "Citri | 1.21 WORLD GEN" },
   { addr: "wss://galacticnet.cfd", name: "Galactic Network" },
   { addr: "wss://eag.xapktech.xyz/", name: "NullCraft FACTIONS" },
-  { addr: "wss://hollow.network", name: "HollowNet" }
+  { addr: "wss://hollow.network", name: "HollowNet" },
+  { addr: "wss://play.monacoeducation.info", name: "DylanMC Lifesteal S1 + TNT Run + Bedwars" }
 ];
             this._eaglercraftXOpts = value;
           },
