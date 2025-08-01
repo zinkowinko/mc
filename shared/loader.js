@@ -28,8 +28,9 @@
           set(value) {
             value.servers = [
   { addr: "wss://mc.clever.college", name: "§c§lGN-MATH.GITHUB.IO" },
-  { addr: "wss://complex.lat", name: "Complexity Network" },
+  { addr: "wss://play.monacoeducation.info", name: "DylanMC Lifesteal S1 + TNT Run + Bedwars" },
   { addr: "wss://example.com", name: "§m-------------"},
+  { addr: "wss://complex.lat", name: "Complexity Network" },
   { addr: "wss://prysm.lol", name: "Prysm"},
   { addr: "wss://arch.mc", name: "ArchMC" },
   { addr: "wss://tuff.tf", name: "TuffNET" },
@@ -78,8 +79,7 @@
   { addr: "wss://play.citri.xyz", name: "Citri | 1.21 WORLD GEN" },
   { addr: "wss://galacticnet.cfd", name: "Galactic Network" },
   { addr: "wss://eag.xapktech.xyz/", name: "NullCraft FACTIONS" },
-  { addr: "wss://hollow.network", name: "HollowNet" },
-  { addr: "wss://play.monacoeducation.info", name: "DylanMC Lifesteal S1 + TNT Run + Bedwars" }
+  { addr: "wss://hollow.network", name: "HollowNet" }
 ];
             this._eaglercraftXOpts = value;
           },
