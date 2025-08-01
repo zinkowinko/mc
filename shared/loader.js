@@ -30,6 +30,7 @@
   { addr: "wss://mc.clever.college", name: "§c§lGN-MATH.GITHUB.IO" },
   { addr: "wss://complex.lat", name: "Complexity Network" },
   { addr: "wss://example.com", name: "§m-------------"},
+  { addr: "wss://prysm.lol", name: "Prysm"},
   { addr: "wss://arch.mc", name: "ArchMC" },
   { addr: "wss://tuff.tf", name: "TuffNET" },
   { addr: "wss://clever-teaching.com", name: "Clever Teaching" },
