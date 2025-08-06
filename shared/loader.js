@@ -27,10 +27,10 @@
           enumerable: true,
           set(value) {
             value.servers = [
-  { addr: "wss://mc.clever.college", name: "§c§lGN-MATH.GITHUB.IO" },
+  { addr: "https://gn-math.github.io", name: "§c§lGN-MATH.GITHUB.IO" },
   { addr: "wss://play.monacoeducation.info", name: "DylanMC Lifesteal S1 + TNT Run + Bedwars" },
   { addr: "wss://example.com", name: "§m-------------"},
-  { addr: "wss://complex.lat", name: "Complexity Network" },
+  { addr: "wss://powerschool.riversideacademy.site", name: "Complexity Network" },
   { addr: "wss://prysm.lol", name: "Prysm"},
   { addr: "wss://arch.mc", name: "ArchMC" },
   { addr: "wss://tuff.tf", name: "TuffNET" },
