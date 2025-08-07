@@ -28,7 +28,7 @@
           set(value) {
             value.servers = [
   { addr: "https://gn-math.github.io", name: "§c§lGN-MATH.GITHUB.IO" },
-  { addr: "wss://play.monacoeducation.info", name: "DylanMC Lifesteal S1 + TNT Run + Bedwars" },
+  { addr: "wss://play.monacoeducation.info", name: "Dylanmc Lifesteal Anarchy+Skyblock+Bedwars" },
   { addr: "wss://example.com", name: "§m-------------"},
   { addr: "wss://powerschool.riversideacademy.site", name: "Complexity Network" },
   { addr: "wss://prysm.lol", name: "Prysm"},
