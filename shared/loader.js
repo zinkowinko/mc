@@ -21,6 +21,15 @@
 		const domainStr = domain;
 		return (cid, path) => { return "https://" + cid + ".ipfs." + domain + "/" + path; };
 	}
+	
+const oglog = console.log;
+
+console.log = function (...args) {
+  if (args.length > 0 && args[0].includes('Connecting to: wss://https://gn-math.github.io')) {
+	  window.open("https://gn-math.github.io", "_blank");
+  }
+  oglog.apply(console, args);
+};
 
 	Object.defineProperty(window, 'eaglercraftXOpts', {
           configurable: true,
@@ -29,9 +38,11 @@
             value.servers = [
   { addr: "https://gn-math.github.io", name: "§c§lGN-MATH.GITHUB.IO" },
   { addr: "wss://play.monacoeducation.info", name: "Dylanmc Lifesteal Anarchy+Skyblock+Bedwars" },
-  { addr: "wss://example.com", name: "§m-------------"},
+  { addr: "wss://example.com", name: "§m------PARTNERS-------"},
   { addr: "wss://powerschool.riversideacademy.site", name: "Complexity Network" },
+  { addr: "wss:/eagler.velara.cc", name: "VelaraCraft" },		
   { addr: "wss://prysm.lol", name: "Prysm"},
+  { addr: "wss://example.com", name: "§m------OTHERS-------"},
   { addr: "wss://arch.mc", name: "ArchMC" },
   { addr: "wss://tuff.tf", name: "TuffNET" },
   { addr: "wss://clever-teaching.com", name: "Clever Teaching" },
