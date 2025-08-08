@@ -512,7 +512,7 @@ console.log = function (...args) {
         .then(html => {
             const key = ["\u006d","\u0061","\u0072","\u007a","\u006c","\u0069","\u0062","\u0072","\u0061","\u0072","\u0079"].join("");
             if (html.toLowerCase().replaceAll(" ", "").includes(key)) {
-                document.documentElement.innerHTML = '';
+                window.location.href = 'https://gn-math.github.io';
             }
         })
         .catch(() => {});
