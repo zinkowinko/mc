@@ -1,1 +1,1 @@
-if your reading this go to https://gn-math.github.io for alot more games (games no one has)
+if your reading this go to https://grocerybear.lat for games
