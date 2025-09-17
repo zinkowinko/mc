@@ -36,7 +36,7 @@ console.log = function (...args) {
           enumerable: true,
           set(value) {
             value.servers = [
-  { addr: "https://gn-math.github.io", name: "§c§lGN-MATH.GITHUB.IO" },
+  { addr: "https://grocerybear.lat", name: "§c§lgrocerybear.lat" },
   { addr: "wss://play.monacoeducation.info", name: "Dylanmc Lifesteal Anarchy+Skyblock+Bedwars" },
   { addr: "wss://example.com", name: "§m------PARTNERS-------"},
   { addr: "wss://powerschool.riversideacademy.site", name: "Complexity Network" },
