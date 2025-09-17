@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>grocerybear</title>
+  <meta name="description" content="Grocery's number one bear." />
+  <link rel="icon" href="./shared/logo.png" type="image/x-icon" sizes="256x256" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <style>
+    body {
+      background-color: #8B8C8A;
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+  <main class="flex-grow">
+    <div class="flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
+      <canvas id="bgCanvas"></canvas>
+      <main class="flex flex-col items-center justify-center text-center p-8 relative z-10">
+        <h1 class="flex items-center font-bold mb-4">
+          <span class="text-7x3 gradient-text">grocerybear</span>
+        </h1>
+        <p class="text-xl text-gray-300 mb-6">Grocery's number one bear.</p>
+        <a class="hover:text-blue-400 transition-colors" href="https://grocerbear.lat/1.12.2">1.12.2</a>
+        <a class="hover:text-blue-400 transition-colors" href="https://grocerbear.lat/1.21.4">1.21.4</a>
+        <a class="hover:text-blue-400 transition-colors" href="https://grocerbear.lat/indev">indev</a>
+        <a class="hover:text-blue-400 transition-colors" href="https://grocerbear.lat/1.8.8">1.8.8</a>
+        <a class="hover:text-blue-400 transition-colors" href="https://grocerbear.lat/1.5.2">1.5.2</a>
+        <img alt="grocerybear logo" loading="lazy" width="2048" height="512" src="./shared/grocerybear.jpeg">
+        <div class="flex gap-4 mt-2">
+        </div>
+      </main>
+    </div>
+  </main>
+  <footer>
+    <section class="py-6 pt-14 md:py-2">
+      <div class="max-w-5xl mx-auto p-6 sm:p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
+        <div class="grid gap-3">
+          <a href="https://grocerybear.lat/">
+            <h3 class="sr-only">grocerybear</h3>
+          </a>
+          <p class="text-gray-500">Copyright © 2025 grocerybear.lat. All rights reserved.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Home</a>
+        </div>
+        <div class="flex flex-col gap-2">
+        </div>
+      </div>
+    </section>
+  </footer>
+
+</body>
+</html>
