@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>grocerybear</title>
+  <meta name="description" content="Discord's ultimate all-in-one app." />
+  <link rel="icon" href="./beef_files/logo.png" type="image/x-icon" sizes="256x256" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <style>
+    body {
+      background-color: #0c0d0d;
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+  <main class="flex-grow">
+    <div class="flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
+      <canvas id="bgCanvas"></canvas>
+      <main class="flex flex-col items-center justify-center text-center p-8 relative z-10">
+        <h1 class="flex items-center font-bold mb-4">
+          <span class="text-7xl gradient-text">zicone</span>
+        </h1>
+        <p class="text-xl text-gray-300 mb-6">Discord's ultimate all-in-one app.</p>
+        <p id="countdown" class="text-lg text-gray-400 mb-6"></p>
+        <div class="flex gap-4 mt-2">
+          <a href="https://discord.gg/qdSP3uxUvy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-2.5 bg-[#5865F2]/20 backdrop-blur-sm text-white rounded-full hover:bg-[#5865F2]/30 transition-all border border-[#5865F2]/40" style="box-shadow:0 0 12px 2px rgba(88, 101, 242, 0.3)">
+            <img alt="Discord" loading="lazy" width="20" height="15" src="./beef_files/discord.svg">Discord
+          </a>
+        </div>
+      </main>
+    </div>
+  </main>
+  <footer>
+    <section class="py-6 pt-14 md:py-2">
+      <div class="max-w-5xl mx-auto p-6 sm:p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
+        <div class="grid gap-3">
+          <a href="https://zicone.xyz/">
+            <h3 class="sr-only">zicone</h3>
+            <img alt="zicone logo" loading="lazy" width="64" height="64" src="./beef_files/logo.png">
+          </a>
+          <p>zicone is an up and coming roblox revival.</p>
+          <p class="text-gray-500">Copyright © 2025 zicone.xyz. All rights reserved.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h5 class="font-bold">Website</h5>
+          <a class="hover:text-blue-400 transition-colors" href="https://zicone.xyz/">Home</a>
+          <a class="hover:text-blue-400 transition-colors" href="https://zicone.xyz/faq">FAQ</a>
+          <a target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors" href="https://discord.gg/qdSP3uxUvy">Support Server</a>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h5 class="font-bold">Legal</h5>
+          <a class="hover:text-blue-400 transition-colors" href="https://zicone.xyz/terms">Terms of Service</a>
+          <a class="hover:text-blue-400 transition-colors" href="https://zicone.xyz/privacy">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <!-- Countdown Timer Script -->
+  <script>
+    const targetDate = new Date("2025-06-04T12:00:00Z").getTime();
+    const countdown = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance < 0) {
+        countdown.innerHTML = "We're back online!";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `Maintenance ends in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+  <!-- Floating Dots Background Script -->
+  <script>
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    const dots = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    for (let i = 0; i < 100; i++) {
+      dots.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "rgba(88, 101, 242, 0.3)";
+      for (const dot of dots) {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+        ctx.fill();
+        dot.x += dot.dx;
+        dot.y += dot.dy;
+
+        if (dot.x < 0 || dot.x > width) dot.dx *= -1;
+        if (dot.y < 0 || dot.y > height) dot.dy *= -1;
+      }
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
