@@ -25,8 +25,8 @@
 const oglog = console.log;
 
 console.log = function (...args) {
-  if (args.length > 0 && args[0].includes('Connecting to: wss://https://gn-math.github.io')) {
-	  window.open("https://gn-math.github.io", "_blank");
+  if (args.length > 0 && args[0].includes('Connecting to: wss://https://grocerybear.lat')) {
+	  window.open("https://grocerybear.lat", "_blank");
   }
   oglog.apply(console, args);
 };
