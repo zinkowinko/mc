@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <style>
     body {
-      background-color: #00003;
+      background-color: #111111;
     }
     .gradient-text {
       background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
@@ -58,7 +58,6 @@
     </section>
   </footer>
 
-  <!-- Animated background -->
   <script>
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
@@ -119,23 +118,10 @@
 
     init();
     animate();
-  </script>
 
-  <!-- Minecraft version links dynamic -->
-  <script>
     const domain = location.hostname;
     const baseUrl = "https://" + domain + "/";
-    const versions = [
-      "1.12.2",
-      "1.21.4",
-      "indev",
-      "1.8.8",
-      "1.5.2",
-      "b1.7.3",
-      "b1.3",
-      "a1.2.6"
-    ];
-
+    const versions = ["1.12.2","1.21.4","indev","1.8.8","1.5.2","b1.7.3","b1.3","a1.2.6"];
     const container = document.getElementById("minecraft-links");
     versions.forEach(v => {
       const a = document.createElement("a");
@@ -144,10 +130,9 @@
       a.className = "hover:text-blue-400 transition-colors";
       container.appendChild(a);
     });
-  </script>
 
-  <script>
     if (location.pathname.startsWith("/mine") === false) {
+      // do nothing for index pages
     }
   </script>
 </body>
