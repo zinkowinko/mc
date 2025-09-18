@@ -9,13 +9,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <style>
     body {
-      background-color: #8B8C8A;
+      background-color: #0f172a;
+      color: #e2e8f0;
     }
     .gradient-text {
-      background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
+      background: linear-gradient(90deg, #ff7a18, #ffb347, #ff7a18);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientShift 6s infinite linear;
+      background-size: 300% 300%;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     canvas {
       position: absolute;
@@ -26,41 +34,113 @@
     }
   </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
-  <main class="flex-grow">
-    <div class="flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
-      <canvas id="bgCanvas"></canvas>
-      <main class="flex flex-col items-center justify-center text-center p-8 relative z-10">
-        <h1 class="flex items-center font-bold mb-4">
-          <span class="text-7x3 gradient-text">grocerybear</span>
-        </h1>
-        <p class="text-xl text-gray-300 mb-6">Grocery's number one bear.</p>
-        <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/mine">click for minecraft</a>
-        <img alt="grocerybear logo" loading="lazy" width="1024" height="512" src="./shared/grocerybear.jpeg">
-        <div class="flex gap-4 mt-2">
-        </div>
-      </main>
+<body class="antialiased flex flex-col min-h-screen relative overflow-hidden">
+  <canvas id="bgCanvas"></canvas>
+
+  <main class="flex-grow relative z-10 flex flex-col items-center justify-center text-center px-6">
+    <h1 class="font-extrabold mb-4 text-6xl sm:text-7xl">
+      <span class="gradient-text">grocerybear</span>
+    </h1>
+    <p class="text-xl sm:text-2xl text-gray-300 mb-8">
+      Grocery's number one bear 🐻
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <a href="https://grocerybear.lat/mine"
+         class="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg hover:scale-105 transition-transform">
+         Play Minecraft
+      </a>
+      <a href="#games"
+         class="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:scale-105 transition-transform">
+         Browse Games
+      </a>
+      <a href="https://discord.gg/"
+         class="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg hover:scale-105 transition-transform">
+         Join Discord
+      </a>
     </div>
+
+    <img alt="grocerybear logo"
+         class="rounded-xl shadow-2xl hover:scale-105 transition-transform"
+         loading="lazy"
+         width="640"
+         height="320"
+         src="./shared/grocerybear.jpeg">
   </main>
-  <footer>
-    <section class="py-6 pt-14 md:py-2">
-      <div class="max-w-5xl mx-auto p-6 sm:p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
-        <div class="grid gap-3">
-          <a href="https://grocerybear.lat/">
-            <h3 class="sr-only">grocerybear</h3>
-          </a>
-          <p>grocerybear is all minecraft. more games soon.</p>
-          <p class="text-gray-500">Copyright © 2025 grocerybear.lat. All rights reserved.</p>
+
+  <section id="games" class="relative z-10 py-20 bg-gray-900 bg-opacity-50">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-8">Featured Games</h2>
+      <p class="text-gray-400 mb-6">More games are coming soon — stay tuned!</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="p-6 bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-semibold text-xl mb-2">Game One</h3>
+          <p class="text-gray-400 mb-4">Description goes here.</p>
+          <a href="#" class="text-blue-400 hover:underline">Play →</a>
         </div>
-        <div class="flex flex-col gap-2">
-          <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Website</a>
-          <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Home</a>
+        <div class="p-6 bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-semibold text-xl mb-2">Game Two</h3>
+          <p class="text-gray-400 mb-4">Description goes here.</p>
+          <a href="#" class="text-blue-400 hover:underline">Play →</a>
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="p-6 bg-gray-800 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="font-semibold text-xl mb-2">Game Three</h3>
+          <p class="text-gray-400 mb-4">Description goes here.</p>
+          <a href="#" class="text-blue-400 hover:underline">Play →</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <footer class="relative z-10 bg-gray-950 bg-opacity-80 py-8 mt-auto">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+      <p>© <span id="year"></span> grocerybear.lat — All rights reserved.</p>
+      <div class="flex gap-4 mt-4 sm:mt-0">
+        <a href="/" class="hover:text-gray-300">Home</a>
+        <a href="#games" class="hover:text-gray-300">Games</a>
+        <a href="https://grocerybear.lat/mine" class="hover:text-gray-300">Minecraft</a>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    let particles = [];
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      particles = Array.from({ length: 60 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.6,
+        dy: (Math.random() - 0.5) * 0.6
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.6)";
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > w) p.dx *= -1;
+        if (p.y < 0 || p.y > h) p.dy *= -1;
+      });
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
 </body>
 </html>
