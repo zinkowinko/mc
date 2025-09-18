@@ -10,12 +10,20 @@
   <style>
     body {
       background-color: #0f172a;
+      color: #e2e8f0;
     }
     .gradient-text {
-      background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
+      background: linear-gradient(90deg, #ff7a18, #ffb347, #ff7a18);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientShift 6s infinite linear;
+      background-size: 300% 300%;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     canvas {
       position: absolute;
@@ -35,31 +43,31 @@
           <span class="gradient-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold break-words">grocerybear</span>
         </h1>
         <p class="text-xl text-gray-300 mb-6">Grocery's number one bear.</p>
-        <a class="hover:text-blue-400 transition-colors px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg text-white font-semibold" href="/mine">Games</a>
-        <img alt="grocerybear logo" loading="lazy" width="1024" height="512" src="./shared/grocerybear.jpeg" class="mt-6">
+        <a class="px-6 py-3 rounded-lg bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 transition-transform" href="https://grocerybear.lat/mine">Games</a>
+        <img alt="grocerybear logo" loading="lazy" width="512" height="256" src="./shared/grocerybear.jpeg" class="mt-8 rounded-lg shadow-lg">
+        <div class="flex gap-4 mt-6">
+          <a href="https://discord.gg/" target="_blank" class="px-5 py-2 bg-blue-600 rounded-lg text-white font-semibold shadow hover:bg-blue-700 transition">Discord</a>
+        </div>
       </main>
     </div>
   </main>
   <footer>
     <section class="py-6 pt-14 md:py-2">
-      <div class="max-w-5xl mx-auto p-6 sm:p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
+      <div class="max-w-5xl mx-auto p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
         <div class="grid gap-3">
-          <a href="grocerybear.lat/">
-            <h3 class="sr-only">grocerybear</h3>
-          </a>
-          <p>grocerybear is all minecraft. more games soon.</p>
           <p class="text-gray-500">Copyright © <span id="year"></span> grocerybear.lat. All rights reserved.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Website</a>
           <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Home</a>
         </div>
         <div class="flex flex-col gap-2"></div>
       </div>
     </section>
   </footer>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
     let w, h;
@@ -67,7 +75,7 @@
     function resize() {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
-      particles = Array.from({ length: 60 }, () => ({
+      particles = Array.from({ length: 50 }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         r: Math.random() * 2 + 1,
@@ -92,6 +100,17 @@
     window.addEventListener("resize", resize);
     resize();
     draw();
+
+    const domain = window.location.hostname;
+    const domain1 = "grocerybear.lat";
+    const domain2 = "grocerybear.christmas";
+    const path = window.location.pathname;
+
+    if (domain === domain1 && path === "/mine") {
+      window.location.href = `https://${domain2}${path}`;
+    } else if (domain === domain2 && path === "/") {
+      window.location.href = `https://${domain1}${path}`;
+    }
   </script>
 </body>
 </html>
