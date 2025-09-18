@@ -9,13 +9,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <style>
     body {
-      background-color: #8B8C8A;
+      background-color: #0f172a;
+      color: #e2e8f0;
     }
     .gradient-text {
-      background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
+      background: linear-gradient(90deg, #ff7a18, #ffb347, #ff7a18);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradientShift 6s infinite linear;
+      background-size: 300% 300%;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     canvas {
       position: absolute;
@@ -32,7 +40,7 @@
       <canvas id="bgCanvas"></canvas>
       <main class="flex flex-col items-center justify-center text-center p-8 relative z-10 w-full max-w-4xl">
         <h1 class="flex items-center font-bold mb-6">
-          <span class="text-6xl gradient-text">grocerybear</span>
+          <span class="gradient-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold break-words">grocerybear</span>
         </h1>
         <p class="text-lg text-gray-200 mb-4">Search or click a version/game to play.</p>
         <input id="search" type="text" placeholder="Search games..." class="mb-6 px-4 py-2 w-full max-w-md rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 text-black" />
@@ -68,12 +76,10 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
     let w, h;
     let particles = [];
-
     function resize() {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
@@ -85,7 +91,6 @@
         dy: (Math.random() - 0.5) * 0.6
       }));
     }
-
     function draw() {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = "rgba(255,255,255,0.6)";
@@ -100,33 +105,23 @@
       });
       requestAnimationFrame(draw);
     }
-
     window.addEventListener("resize", resize);
     resize();
     draw();
-
     const searchInput = document.getElementById("search");
     const versionButtons = document.querySelectorAll(".version-btn");
     const versionsGrid = document.getElementById("versionsGrid");
-
     searchInput.addEventListener("input", () => {
       const query = searchInput.value.toLowerCase();
-      let visibleCount = 0;
       versionButtons.forEach(btn => {
         const version = btn.dataset.version.toLowerCase();
         const displayName = btn.textContent.toLowerCase();
-        if (version.includes(query) || displayName.includes(query)) {
-          btn.style.display = "block";
-          visibleCount++;
-        } else {
-          btn.style.display = "none";
-        }
+        btn.style.display = (version.includes(query) || displayName.includes(query)) ? "block" : "none";
       });
       versionsGrid.className = query === "" 
         ? "grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4" 
         : "grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3";
     });
-
     document.querySelectorAll(".version-btn").forEach(btn => {
       btn.classList.add(
         "px-4","py-3","rounded-lg",
