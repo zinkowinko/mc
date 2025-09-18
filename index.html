@@ -133,20 +133,12 @@
 
   <script>
     const gamesBtn = document.getElementById("games-button");
-    if (location.hostname === "grocerybear.lat") {
+    const domain = location.hostname;
+    if (domain === "grocerybear.lat") {
       gamesBtn.href = "https://grocerybear.lat/mine";
     }
-    if (location.hostname === "grocerybear.christmas") {
+    if (domain === "grocerybear.christmas") {
       gamesBtn.href = "https://grocerybear.christmas/mine";
-    }
-  </script>
-
-  <script>
-    if (location.hostname === "grocerybear.lat" && !location.pathname.startsWith("/mine")) {
-      location.href = "https://grocerybear.lat/mine";
-    }
-    if (location.hostname === "grocerybear.christmas" && !location.pathname.startsWith("/mine")) {
-      location.href = "https://grocerybear.christmas/mine";
     }
   </script>
 </body>
