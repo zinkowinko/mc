@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <style>
     body {
-      background-color: #8B8C8A;
+      background-color: #111111;
     }
     .gradient-text {
       background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
@@ -62,7 +62,6 @@
     </section>
   </footer>
 
-  <!-- Animated background -->
   <script>
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
@@ -93,12 +92,8 @@
         ctx.fill();
       }
       update() {
-        if (this.x > canvas.width || this.x < 0) {
-          this.directionX = -this.directionX;
-        }
-        if (this.y > canvas.height || this.y < 0) {
-          this.directionY = -this.directionY;
-        }
+        if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+        if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
         this.x += this.directionX;
         this.y += this.directionY;
         this.draw();
@@ -122,24 +117,16 @@
     function animate() {
       requestAnimationFrame(animate);
       ctx.clearRect(0, 0, innerWidth, innerHeight);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-      }
+      for (let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
     }
 
     init();
     animate();
-  </script>
 
-  <script>
     const gamesBtn = document.getElementById("games-button");
     const domain = location.hostname;
-    if (domain === "grocerybear.lat") {
-      gamesBtn.href = "https://grocerybear.lat/mine";
-    }
-    if (domain === "grocerybear.christmas") {
-      gamesBtn.href = "https://grocerybear.christmas/mine";
-    }
+    if (domain === "grocerybear.lat") gamesBtn.href = "https://grocerybear.lat/mine";
+    if (domain === "grocerybear.christmas") gamesBtn.href = "https://grocerybear.christmas/mine";
   </script>
 </body>
 </html>
