@@ -1,52 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GroceryBear - Games</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>grocerybear</title>
+  <meta name="description" content="Grocery's number one bear." />
+  <link rel="icon" href="../shared/loading-bg.jpg" type="image/x-icon" sizes="256x256" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background: #000000;
-      color: white;
-      overflow: hidden;
+    body {
+      background-color: #111111;
+      color: #ffffff;
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, #5865F2, #7289da, #99AAB5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      word-break: keep-all;
+      white-space: nowrap;
     }
     canvas {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      z-index: -1;
+      display: block;
+      z-index: 0;
     }
   </style>
 </head>
-<body class="flex flex-col min-h-screen">
-
-  <header class="bg-black bg-opacity-70 p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">GroceryBear</h1>
-    <nav class="flex gap-4">
-      <a href="https://discord.gg/saxjKmjDu5" target="_blank" class="hover:underline">Discord</a>
-    </nav>
-  </header>
-
-  <main class="flex-grow flex flex-col items-center justify-center p-6 text-center">
-    <h2 class="text-4xl font-semibold mb-6">Find Your Game</h2>
-    <div class="w-full max-w-md">
-      <input type="text" id="search" placeholder="Search games..." class="w-full p-3 rounded-lg text-black">
+<body class="antialiased flex flex-col min-h-screen">
+  <main class="flex-grow">
+    <div class="flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
+      <canvas id="bgCanvas"></canvas>
+      <main class="flex flex-col items-center justify-center text-center p-8 relative z-10">
+        <h1 class="flex items-center font-bold mb-4">
+          <span class="text-7xl gradient-text">grocerybear</span>
+        </h1>
+        <p class="text-xl text-white mb-6">Click on the version to be redirected to the minecraft version.</p>
+        <div class="grid gap-3 text-lg" id="minecraft-links"></div>
+      </main>
     </div>
   </main>
-
-  <canvas id="bg"></canvas>
+  <footer>
+    <section class="py-6 pt-14 md:py-2">
+      <div class="max-w-5xl mx-auto p-6 sm:p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
+        <div class="grid gap-3">
+          <a href="https://grocerybear.lat/">
+            <h3 class="sr-only">grocerybear</h3>
+          </a>
+          <p class="text-white">Copyright © 2025 grocerybear.lat. All rights reserved.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Home</a>
+        </div>
+        <div class="flex flex-col gap-2"></div>
+      </div>
+    </section>
+  </footer>
 
   <script>
-    const canvas = document.getElementById('bg');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
     let particlesArray;
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    window.addEventListener("resize", function () {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
 
     class Particle {
       constructor(x, y, directionX, directionY, size, color) {
@@ -64,12 +89,8 @@
         ctx.fill();
       }
       update() {
-        if (this.x + this.size > canvas.width || this.x - this.size < 0) {
-          this.directionX = -this.directionX;
-        }
-        if (this.y + this.size > canvas.height || this.y - this.size < 0) {
-          this.directionY = -this.directionY;
-        }
+        if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+        if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
         this.x += this.directionX;
         this.y += this.directionY;
         this.draw();
@@ -80,33 +101,36 @@
       particlesArray = [];
       let numberOfParticles = (canvas.height * canvas.width) / 9000;
       for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 2) + 1;
-        let x = (Math.random() * (window.innerWidth - size * 2));
-        let y = (Math.random() * (window.innerHeight - size * 2));
+        let size = Math.random() * 2;
+        let x = Math.random() * (innerWidth - size * 2);
+        let y = Math.random() * (innerHeight - size * 2);
         let directionX = (Math.random() * 0.4) - 0.2;
         let directionY = (Math.random() * 0.4) - 0.2;
-        let color = 'white';
+        let color = "#ffffff";
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     }
 
     function animate() {
       requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-      }
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
     }
-
-    window.addEventListener('resize', function () {
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      init();
-    });
 
     init();
     animate();
-  </script>
 
+    const domain = location.hostname;
+    const baseUrl = "https://" + domain + "/";
+    const versions = ["1.12.2","1.21.4","indev","1.8.8","1.5.2","b1.7.3","b1.3","a1.2.6"];
+    const container = document.getElementById("minecraft-links");
+    versions.forEach(v => {
+      const a = document.createElement("a");
+      a.href = baseUrl + v;
+      a.textContent = v;
+      a.className = "hover:text-blue-400 transition-colors";
+      container.appendChild(a);
+    });
+  </script>
 </body>
 </html>
