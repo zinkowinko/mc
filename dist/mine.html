@@ -27,20 +27,44 @@
       display: block;
       z-index: 0;
     }
-    .version-button {
-      display: inline-block;
+    #search-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    #version-search {
       padding: 0.5rem 1rem;
-      margin: 0.25rem;
+      border-radius: 0.5rem;
+      border: none;
+      width: 220px;
+      text-align: center;
+      font-size: 1rem;
+      outline: none;
+    }
+    .version-button {
+      padding: 0.5rem 1rem;
+      min-width: 90px;
+      text-align: center;
       background-color: #2d2d2d;
       color: #ffffff;
-      border-radius: 0.375rem;
+      border-radius: 0.5rem;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.3s, color 0.3s;
+      transition: transform 0.2s, background 0.3s;
+      font-weight: 500;
     }
     .version-button:hover {
       background-color: #5865F2;
       color: #fff;
+      transform: scale(1.05);
+    }
+    #minecraft-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
     }
   </style>
 </head>
@@ -52,9 +76,13 @@
         <h1 class="flex items-center font-bold mb-4">
           <span class="text-7xl gradient-text">grocerybear</span>
         </h1>
-        <p class="text-xl text-white mb-6">Click on the version to be redirected to the Minecraft version.</p>
-        <input type="text" id="version-search" placeholder="Search versions..." class="mb-4 p-2 rounded text-black w-64 text-center" />
-        <div class="grid gap-3 text-lg" id="minecraft-links"></div>
+        <p class="text-xl text-white mb-6">hiii grocerybear time!!!</p>
+
+        <div id="search-container">
+          <input type="text" id="version-search" placeholder="Search versions..." />
+        </div>
+
+        <div id="minecraft-links"></div>
       </main>
     </div>
   </main>
@@ -63,13 +91,10 @@
     <section class="py-6 pt-14 md:py-2">
       <div class="max-w-5xl mx-auto p-6 sm:p-8 grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
         <div class="grid gap-3">
-          <a href="https://grocerybear.lat/">
-            <h3 class="sr-only">grocerybear</h3>
-          </a>
+          <a href="https://grocerybear.lat/"><h3 class="sr-only">grocerybear</h3></a>
           <p class="text-white">Copyright © 2025 grocerybear.lat. All rights reserved.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <a class="hover:text-blue-400 transition-colors" href="https://grocerybear.lat/">Home</a>
         </div>
         <div class="flex flex-col gap-2"></div>
       </div>
@@ -82,73 +107,43 @@
     let particlesArray;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    window.addEventListener("resize", function () {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
+    window.addEventListener("resize", () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
+
     class Particle {
-      constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
+      constructor(x, y, dx, dy, size, color) {
+        this.x = x; this.y = y; this.dx = dx; this.dy = dy; this.size = size; this.color = color;
       }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-      update() {
-        if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
-        if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
-        this.x += this.directionX;
-        this.y += this.directionY;
-        this.draw();
-      }
+      draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); }
+      update() { if(this.x>canvas.width||this.x<0)this.dx=-this.dx; if(this.y>canvas.height||this.y<0)this.dy=-this.dy; this.x+=this.dx; this.y+=this.dy; this.draw(); }
     }
+
     function init() {
       particlesArray = [];
-      let numberOfParticles = (canvas.height * canvas.width) / 9000;
-      for (let i = 0; i < numberOfParticles; i++) {
-        let size = Math.random() * 2;
-        let x = Math.random() * (innerWidth - size * 2);
-        let y = Math.random() * (innerHeight - size * 2);
-        let directionX = (Math.random() * 0.4) - 0.2;
-        let directionY = (Math.random() * 0.4) - 0.2;
-        let color = "#ffffff";
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+      let numParticles = (canvas.height * canvas.width) / 9000;
+      for (let i=0;i<numParticles;i++) {
+        let size=Math.random()*2, x=Math.random()*(innerWidth-size*2), y=Math.random()*(innerHeight-size*2);
+        let dx=(Math.random()*0.4)-0.2, dy=(Math.random()*0.4)-0.2, color="#fff";
+        particlesArray.push(new Particle(x,y,dx,dy,size,color));
       }
     }
-    function animate() {
-      requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, innerWidth, innerHeight);
-      for (let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
-    }
-    init();
-    animate();
+    function animate() { requestAnimationFrame(animate); ctx.clearRect(0,0,innerWidth,innerHeight); particlesArray.forEach(p=>p.update()); }
+    init(); animate();
+
     const domain = location.hostname;
     const baseUrl = "https://" + domain + "/";
-    const versions = ["1.12.2","1.21.4","indev","1.8.8","1.5.2","b1.7.3","b1.3","a1.2.6"];
+    const versions = ["1.12.2","indev","1.8.8","1.5.2","b1.7.3","b1.3","a1.2.6"];
     const container = document.getElementById("minecraft-links");
-    function renderVersions(filter = "") {
-      container.innerHTML = "";
-      versions.filter(v => v.toLowerCase().includes(filter.toLowerCase())).forEach(v => {
-        const a = document.createElement("a");
-        a.href = baseUrl + v;
-        a.textContent = v;
-        a.className = "version-button";
+
+    function renderVersions(filter="") {
+      container.innerHTML="";
+      versions.filter(v=>v.toLowerCase().includes(filter.toLowerCase())).forEach(v=>{
+        const a=document.createElement("a");
+        a.href=baseUrl+v; a.textContent=v; a.className="version-button";
         container.appendChild(a);
       });
     }
     renderVersions();
-    const searchInput = document.getElementById("version-search");
-    searchInput.addEventListener("input", (e) => {
-      renderVersions(e.target.value);
-    });
+    document.getElementById("version-search").addEventListener("input", e=>renderVersions(e.target.value));
   </script>
 </body>
 </html>
