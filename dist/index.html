@@ -27,6 +27,21 @@
       display: block;
       z-index: 0;
     }
+    .main-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      background-color: #2d2d2d;
+      color: #ffffff;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .main-button:hover {
+      background-color: #5865F2;
+      color: #fff;
+    }
   </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
@@ -38,9 +53,11 @@
           <span class="text-7xl gradient-text">grocerybear</span>
         </h1>
         <p class="text-xl text-white mb-6">Grocery's number one bear!!!</p>
-        <a id="games-button" class="hover:text-blue-400 transition-colors" href="#">Games</a>
+        <div class="flex gap-4 mb-4">
+          <a class="main-button" href="/mine">Games</a>
+          <a class="main-button" href="https://discord.gg/YOUR_DISCORD_INVITE" target="_blank">Discord</a>
+        </div>
         <img alt="grocerybear logo" loading="lazy" width="1024" height="512" src="./shared/grocerybear.jpeg">
-        <div class="flex gap-4 mt-2"></div>
       </main>
     </div>
   </main>
@@ -67,16 +84,13 @@
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
     let particlesArray;
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
     window.addEventListener("resize", function () {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       init();
     });
-
     class Particle {
       constructor(x, y, directionX, directionY, size, color) {
         this.x = x;
@@ -100,7 +114,6 @@
         this.draw();
       }
     }
-
     function init() {
       particlesArray = [];
       let numberOfParticles = (canvas.height * canvas.width) / 9000;
@@ -114,20 +127,13 @@
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     }
-
     function animate() {
       requestAnimationFrame(animate);
       ctx.clearRect(0, 0, innerWidth, innerHeight);
       for (let i = 0; i < particlesArray.length; i++) particlesArray[i].update();
     }
-
     init();
     animate();
-
-    const gamesBtn = document.getElementById("games-button");
-    const domain = location.hostname;
-    if (domain === "grocerybear.lat") gamesBtn.href = "https://grocerybear.lat/mine";
-    if (domain === "grocerybear.christmas") gamesBtn.href = "https://grocerybear.christmas/mine";
   </script>
 </body>
 </html>
